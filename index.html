@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixel Drop - Dashboard Marketing</title>
+    <title>Dashboard Pixel Drop Marketing</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,14 +13,16 @@
         }
         
         :root {
-            --primary: #2563EB;
-            --accent: #F59E0B;
-            --success: #10B981;
-            --bg: #F8FAFC;
-            --card-bg: #FFFFFF;
-            --text: #1E293B;
-            --text-light: #64748B;
-            --border: #E2E8F0;
+            --primary: #1CBBC8;
+            --primary-light: rgba(28, 187, 200, 0.15);
+            --accent: #E8B866;
+            --bg: #0D0D0D;
+            --card-bg: #1A1A1A;
+            --card-border: #2A2A2A;
+            --text: #FFFFFF;
+            --text-muted: #888888;
+            --success: #4ADE80;
+            --warning: #FBBF24;
         }
         
         body {
@@ -28,283 +30,277 @@
             background: var(--bg);
             min-height: 100vh;
             color: var(--text);
-            padding: 40px 20px;
+            padding: 40px 30px;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
+        /* Header */
         header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .logo {
-            max-width: 180px;
-            margin-bottom: 15px;
-        }
-        
-        .subtitle {
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 40px;
         }
         
-        .stat-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 1px solid var(--border);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .stat-card.main {
-            grid-column: span 2;
-            text-align: center;
-            background: linear-gradient(135deg, var(--card-bg) 0%, #EFF6FF 100%);
-        }
-        
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-        
-        .stat-value {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .stat-value.primary { color: var(--primary); }
-        .stat-value.accent { color: var(--accent); }
-        .stat-value.success { color: var(--success); }
-        
-        .stat-detail {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        .stat-link {
-            color: var(--primary);
-            font-size: 0.9rem;
-            text-decoration: none;
-        }
-        
-        .stat-link:hover {
-            text-decoration: underline;
-        }
-        
-        .progress-container {
-            margin-top: 20px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .progress-bar {
-            height: 24px;
-            background: var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 12px;
-            transition: width 1.5s ease;
-            position: relative;
-        }
-        
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .progress-text {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 12px;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-        
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--text);
-            font-weight: 600;
-        }
-        
-        /* Carousel */
-        .carousel-section {
-            margin-top: 40px;
-        }
-        
-        .carousel-container {
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            padding-bottom: 10px;
-        }
-        
-        .carousel-container::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .carousel-track {
-            display: flex;
-            gap: 15px;
-            padding: 5px;
-        }
-        
-        .carousel-card {
-            flex: 0 0 auto;
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px 25px;
-            min-width: 160px;
-            text-align: center;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .carousel-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .carousel-card .label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text);
-            font-size: 0.95rem;
-        }
-        
-        .carousel-card .value {
-            color: var(--primary);
+        .title {
             font-size: 1.8rem;
             font-weight: 700;
         }
         
-        .carousel-card .value.accent {
+        .title span {
+            color: var(--primary);
+        }
+        
+        .update-time {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 25px;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .stat-value.accent {
             color: var(--accent);
         }
         
-        .carousel-card .value.success {
-            color: var(--success);
+        .stat-objective {
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
         
-        /* Actions */
-        .actions-section {
-            margin-top: 40px;
+        /* Progress Section */
+        .progress-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
         }
         
-        .action-card {
+        .progress-card {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .action-card h3 {
-            font-size: 1rem;
-            margin-bottom: 15px;
+        .progress-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .progress-values {
+            text-align: right;
+            font-size: 0.95rem;
             color: var(--primary);
             font-weight: 600;
         }
         
-        .action-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 12px;
+        .progress-bar-container {
+            flex: 1;
+            margin: 0 20px;
+            height: 8px;
+            background: var(--card-border);
+            border-radius: 4px;
+            overflow: hidden;
         }
         
-        .action-list li {
-            padding: 12px 15px;
-            background: var(--bg);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.5s ease;
+        }
+        
+        .progress-bar-fill.primary {
+            background: var(--primary);
+        }
+        
+        .progress-bar-fill.accent {
+            background: var(--accent);
+        }
+        
+        /* Section Title */
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        /* Table */
+        .table-container {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: var(--primary-light);
+        }
+        
+        th {
+            text-align: left;
+            padding: 15px 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 18px 20px;
+            border-top: 1px solid var(--card-border);
             font-size: 0.95rem;
         }
         
-        .status {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            flex-shrink: 0;
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
         
-        .status.todo { background: var(--accent); }
-        .status.done { background: var(--success); }
-        .status.inprogress { background: var(--primary); }
+        .status-badge.published {
+            background: rgba(74, 222, 128, 0.15);
+            color: var(--success);
+        }
         
-        .update-info {
+        .status-badge.planned {
+            background: rgba(28, 187, 200, 0.15);
+            color: var(--primary);
+        }
+        
+        .status-badge.idea {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--warning);
+        }
+        
+        /* Actions */
+        .actions-section {
+            margin-bottom: 30px;
+        }
+        
+        .action-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 25px;
+        }
+        
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+        
+        .action-item:last-child {
+            border-bottom: none;
+        }
+        
+        .action-arrow {
+            color: var(--primary);
+        }
+        
+        /* Sources Section */
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .source-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
             text-align: center;
-            margin-top: 40px;
-            color: var(--text-light);
-            font-size: 0.85rem;
         }
         
-        @media (min-width: 769px) {
+        .source-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        
+        .source-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .source-value.zero {
+            color: var(--text-muted);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
             .stats-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
-            
-            .stat-card.main {
-                grid-column: 1 / -1;
+            .sources-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
         
         @media (max-width: 768px) {
-            .stat-card.main {
-                grid-column: span 1;
-            }
-            
-            .stat-value {
-                font-size: 2.5rem;
-            }
-            
-            .action-list {
+            .stats-grid,
+            .progress-section {
                 grid-template-columns: 1fr;
+            }
+            .sources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .stat-value {
+                font-size: 2rem;
             }
         }
     </style>
@@ -312,163 +308,143 @@
 <body>
     <div class="container">
         <header>
-            <a href="https://pixel-drop.com" target="_blank">
-                <img src="https://pixel-drop.com/wp-content/uploads/2021/09/t-1.svg" alt="Pixel Drop" class="logo">
-            </a>
-            <p class="subtitle">Dashboard Marketing | Objectifs 2026</p>
+            <h1 class="title">Dashboard <span>Pixel Drop</span> Marketing</h1>
+            <div class="update-time">Mise à jour : <span id="update-date">5 fév 2026 - 22h21</span></div>
         </header>
         
+        <!-- Stats principales -->
         <div class="stats-grid">
-            <div class="stat-card main">
-                <div class="stat-label">Trafic site (30 jours)</div>
-                <div class="stat-value primary" id="traffic-count">80</div>
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill" style="width: 0%">
-                            <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.75rem; font-weight: 600; color: white;" id="progress-percent">16%</span>
-                        </div>
-                    </div>
-                    <div class="progress-text">
-                        <span>Actuel : 80 sessions</span>
-                        <span><strong>Objectif : 500</strong></span>
-                    </div>
-                </div>
-            </div>
-            
             <div class="stat-card">
-                <div class="stat-label">LinkedIn</div>
-                <div class="stat-value primary" id="linkedin-count">62</div>
-                <a href="https://www.linkedin.com/company/pixel-drop-io/" target="_blank" class="stat-link">@pixel-drop-io</a>
+                <div class="stat-label">Abonnés LinkedIn</div>
+                <div class="stat-value" id="linkedin-count">62</div>
+                <div class="stat-objective">Objectif : 200</div>
             </div>
-            
             <div class="stat-card">
-                <div class="stat-label">Instagram</div>
-                <div class="stat-value accent" id="instagram-count">45</div>
-                <a href="https://www.instagram.com/pixeldrop_fr/" target="_blank" class="stat-link">@pixeldrop_fr</a>
+                <div class="stat-label">Abonnés Instagram</div>
+                <div class="stat-value" id="instagram-count">45</div>
+                <div class="stat-objective">Objectif : 150</div>
             </div>
-            
             <div class="stat-card">
-                <div class="stat-label">Posts LinkedIn (90j)</div>
+                <div class="stat-label">Trafic site (30j)</div>
+                <div class="stat-value" id="traffic-count">80</div>
+                <div class="stat-objective">Objectif : 500 sessions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Posts publiés (90j)</div>
                 <div class="stat-value accent">0</div>
-                <div class="stat-detail">Objectif : 2/semaine</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-label">Articles blog</div>
-                <div class="stat-value accent">0</div>
-                <div class="stat-detail">Blog à lancer</div>
+                <div class="stat-objective">Objectif : 2/semaine</div>
             </div>
         </div>
         
-        <div class="carousel-section">
-            <h2 class="section-title">Sources de trafic</h2>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <div class="carousel-card">
-                        <div class="label">Direct</div>
-                        <div class="value">76</div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="label">Référent</div>
-                        <div class="value accent">3</div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="label">SEO</div>
-                        <div class="value accent">0</div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="label">Social</div>
-                        <div class="value accent">0</div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="label">Email</div>
-                        <div class="value accent">0</div>
-                    </div>
+        <!-- Jauges de progression -->
+        <div class="progress-section">
+            <div class="progress-card">
+                <span class="progress-label">LinkedIn</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill primary" id="linkedin-bar" style="width: 0%"></div>
                 </div>
+                <span class="progress-values">62 / 200</span>
             </div>
-        </div>
-        
-        <div class="carousel-section">
-            <h2 class="section-title">Top pages</h2>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <div class="carousel-card">
-                        <div class="label">/shop/</div>
-                        <div class="value">47</div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="label">Accueil</div>
-                        <div class="value">24</div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="label">/contact/</div>
-                        <div class="value success">8</div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="label">Autres</div>
-                        <div class="value accent">9</div>
-                    </div>
+            <div class="progress-card">
+                <span class="progress-label">Instagram</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill primary" id="instagram-bar" style="width: 0%"></div>
                 </div>
+                <span class="progress-values">45 / 150</span>
             </div>
-        </div>
-        
-        <div class="carousel-section">
-            <h2 class="section-title">Objectifs abonnés</h2>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <div class="carousel-card">
-                        <div class="label">LinkedIn actuel</div>
-                        <div class="value">62</div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="label">LinkedIn objectif</div>
-                        <div class="value success">200</div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="label">Instagram actuel</div>
-                        <div class="value">45</div>
-                    </div>
-                    <div class="carousel-card">
-                        <div class="label">Instagram objectif</div>
-                        <div class="value success">150</div>
-                    </div>
+            <div class="progress-card">
+                <span class="progress-label">Trafic</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill accent" id="traffic-bar" style="width: 0%"></div>
                 </div>
+                <span class="progress-values">80 / 500</span>
             </div>
         </div>
         
-        <div class="actions-section">
-            <h2 class="section-title">Plan d'action</h2>
-            <div class="action-card">
-                <h3>Semaine 1 (5-9 février)</h3>
-                <ul class="action-list">
-                    <li><span class="status todo"></span> Post LinkedIn #1 : présentation Pixel Drop</li>
-                    <li><span class="status todo"></span> Post LinkedIn #2 : conseil pratique</li>
-                </ul>
+        <!-- Sources de trafic -->
+        <h2 class="section-title">Sources de trafic</h2>
+        <div class="sources-grid">
+            <div class="source-card">
+                <div class="source-label">Direct</div>
+                <div class="source-value">76</div>
             </div>
-            <div class="action-card" style="margin-top: 15px;">
-                <h3>À venir</h3>
-                <ul class="action-list">
-                    <li><span class="status todo"></span> Rythme 2 posts LinkedIn/semaine</li>
-                    <li><span class="status todo"></span> 1 post Instagram/semaine</li>
-                    <li><span class="status todo"></span> Lancer le blog (SEO)</li>
-                    <li><span class="status todo"></span> Newsletter Brevo</li>
-                </ul>
+            <div class="source-card">
+                <div class="source-label">Référent</div>
+                <div class="source-value">3</div>
             </div>
-            <div class="action-card" style="margin-top: 15px;">
-                <h3>Fait</h3>
-                <ul class="action-list">
-                    <li><span class="status done"></span> Audit situation initiale</li>
-                    <li><span class="status done"></span> Création tableau de bord</li>
-                </ul>
+            <div class="source-card">
+                <div class="source-label">SEO</div>
+                <div class="source-value zero">0</div>
+            </div>
+            <div class="source-card">
+                <div class="source-label">Social</div>
+                <div class="source-value zero">0</div>
+            </div>
+            <div class="source-card">
+                <div class="source-label">Email</div>
+                <div class="source-value zero">0</div>
             </div>
         </div>
         
-        <div class="update-info">
-            Dernière mise à jour : <span id="last-update"></span>
+        <!-- Tableau des posts -->
+        <h2 class="section-title">Posts LinkedIn</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Post</th>
+                        <th>Type</th>
+                        <th>Impressions</th>
+                        <th>Engagement</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6 fév</td>
+                        <td>Présentation Pixel Drop</td>
+                        <td>Branding</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><span class="status-badge planned">Prévu</span></td>
+                    </tr>
+                    <tr>
+                        <td>7 fév</td>
+                        <td>Conseil pratique #1</td>
+                        <td>Expertise</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><span class="status-badge idea">Idée</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Prochaines actions -->
+        <h2 class="section-title">Prochaines actions</h2>
+        <div class="action-card">
+            <div class="action-item">
+                <span class="action-arrow">→</span>
+                <span>Créer Page Facebook Pixel Drop et lier à Instagram</span>
+            </div>
+            <div class="action-item">
+                <span class="action-arrow">→</span>
+                <span>Rédiger et publier post LinkedIn #1 (présentation)</span>
+            </div>
+            <div class="action-item">
+                <span class="action-arrow">→</span>
+                <span>Configurer API Instagram pour publication auto</span>
+            </div>
+            <div class="action-item">
+                <span class="action-arrow">→</span>
+                <span>Définir ligne éditoriale et créer templates visuels</span>
+            </div>
         </div>
     </div>
     
     <script>
+        // Animation des compteurs
         function animateValue(id, start, end, duration) {
             const obj = document.getElementById(id);
             if (!obj) return;
@@ -480,30 +456,28 @@
                 const progress = Math.min(elapsed / duration, 1);
                 const current = Math.floor(start + range * progress);
                 obj.textContent = current;
-                
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                }
+                if (progress < 1) requestAnimationFrame(update);
             }
-            
             requestAnimationFrame(update);
         }
         
+        // Au chargement
         window.addEventListener('load', () => {
-            animateValue('traffic-count', 0, 80, 1500);
-            animateValue('linkedin-count', 0, 62, 1500);
-            animateValue('instagram-count', 0, 45, 1500);
+            animateValue('linkedin-count', 0, 62, 1200);
+            animateValue('instagram-count', 0, 45, 1200);
+            animateValue('traffic-count', 0, 80, 1200);
             
             setTimeout(() => {
-                document.getElementById('progress-fill').style.width = '16%';
+                document.getElementById('linkedin-bar').style.width = '31%';
+                document.getElementById('instagram-bar').style.width = '30%';
+                document.getElementById('traffic-bar').style.width = '16%';
             }, 300);
         });
         
-        document.getElementById('last-update').textContent = new Date().toLocaleDateString('fr-FR', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
+        // Date de mise à jour
+        const now = new Date();
+        const options = { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+        document.getElementById('update-date').textContent = now.toLocaleDateString('fr-FR', options).replace(',', ' -');
     </script>
 </body>
 </html>
