@@ -73,6 +73,15 @@
             border-radius: 12px;
             padding: 25px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         
         .stat-label {
@@ -81,6 +90,14 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .stat-label .link-icon {
+            opacity: 0.5;
+            font-size: 0.7rem;
         }
         
         .stat-value {
@@ -322,28 +339,28 @@
             <div class="update-time">Mise à jour : <span id="update-date">5 fév 2026</span></div>
         </header>
         
-        <!-- Stats principales -->
+        <!-- Stats principales avec liens -->
         <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-label">LinkedIn</div>
+            <a href="https://www.linkedin.com/company/93845156/admin/analytics/followers/" target="_blank" class="stat-card">
+                <div class="stat-label">LinkedIn <span class="link-icon">↗</span></div>
                 <div class="stat-value" id="linkedin-count">62</div>
                 <div class="stat-objective">Objectif : 500 followers</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Instagram</div>
+            </a>
+            <a href="https://www.instagram.com/pixeldrop_fr/" target="_blank" class="stat-card">
+                <div class="stat-label">Instagram <span class="link-icon">↗</span></div>
                 <div class="stat-value" id="instagram-count">45</div>
                 <div class="stat-objective">Objectif : 300 followers</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Newsletter</div>
-                <div class="stat-value" id="newsletter-count">25</div>
+            </a>
+            <a href="https://app.brevo.com/contact/list" target="_blank" class="stat-card">
+                <div class="stat-label">Newsletter <span class="link-icon">↗</span></div>
+                <div class="stat-value" id="newsletter-count">98</div>
                 <div class="stat-objective">Objectif : 200 abonnés</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Trafic site (30j)</div>
+            </a>
+            <a href="https://analytics.google.com/analytics/web/#/p474885507/reports/reportinghub" target="_blank" class="stat-card">
+                <div class="stat-label">Trafic site (30j) <span class="link-icon">↗</span></div>
                 <div class="stat-value" id="traffic-count">80</div>
                 <div class="stat-objective">Objectif : 1000 sessions</div>
-            </div>
+            </a>
         </div>
         
         <!-- Jauges de progression -->
@@ -370,7 +387,7 @@
             <div class="progress-card">
                 <div class="progress-header">
                     <span class="progress-label">Newsletter Abonnés</span>
-                    <span class="progress-values">25 / 200</span>
+                    <span class="progress-values">98 / 200</span>
                 </div>
                 <div class="progress-bar-container">
                     <div class="progress-bar-fill" id="newsletter-bar" style="width: 0%"></div>
@@ -398,7 +415,7 @@
             <div class="channel-card">
                 <div class="priority">#2 Priorité</div>
                 <div class="name">Newsletter</div>
-                <div class="status">✓ Configuré</div>
+                <div class="status">✓ 98 contacts</div>
             </div>
             <div class="channel-card">
                 <div class="priority">#3 Priorité</div>
@@ -472,6 +489,10 @@
             </div>
             <div class="action-item">
                 <span class="action-check">✓</span>
+                <span>98 contacts Notion importés dans Brevo</span>
+            </div>
+            <div class="action-item">
+                <span class="action-check">✓</span>
                 <span>Stratégie et objectifs 2026 définis</span>
             </div>
         </div>
@@ -487,11 +508,11 @@
             </div>
             <div class="action-item">
                 <span class="action-arrow">→</span>
-                <span>Importer contacts Notion → Brevo</span>
+                <span>Créer templates visuels</span>
             </div>
             <div class="action-item">
                 <span class="action-arrow">→</span>
-                <span>Créer templates visuels</span>
+                <span>Automatiser la mise à jour du dashboard</span>
             </div>
         </div>
     </div>
@@ -516,13 +537,13 @@
         window.addEventListener('load', () => {
             animateValue('linkedin-count', 0, 62, 1200);
             animateValue('instagram-count', 0, 45, 1200);
-            animateValue('newsletter-count', 0, 25, 1200);
+            animateValue('newsletter-count', 0, 98, 1200);
             animateValue('traffic-count', 0, 80, 1200);
             
             setTimeout(() => {
                 document.getElementById('linkedin-bar').style.width = '12.4%';
                 document.getElementById('instagram-bar').style.width = '15%';
-                document.getElementById('newsletter-bar').style.width = '12.5%';
+                document.getElementById('newsletter-bar').style.width = '49%';
                 document.getElementById('traffic-bar').style.width = '8%';
             }, 300);
         });
